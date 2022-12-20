@@ -26,6 +26,8 @@ const Swiper = forwardRef(
       wrapperTag: WrapperTag = 'div',
       children,
       onSwiper,
+      prevBtn = null,
+      nextBtn = null,
       ...rest
     } = {},
     externalElRef,
@@ -212,8 +214,16 @@ const Swiper = forwardRef(
           </WrapperTag>
           {needsNavigation(swiperParams) && (
             <>
-              <div ref={prevElRef} className="swiper-button-prev" />
-              <div ref={nextElRef} className="swiper-button-next" />
+              {prevBtn ? (
+                <prevBtn ref={prevBtn} />
+              ) : (
+                <div ref={prevElRef} className="swiper-button-prev" />
+              )}
+              {nextBtn ? (
+                <nextBtn ref={nextBtn} />
+              ) : (
+                <div ref={nextElRef} className="swiper-button-next" />
+              )}
             </>
           )}
           {needsScrollbar(swiperParams) && (
